@@ -23,8 +23,18 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient
+    // Relacionamento muitos-para-muitos entre Product e Category.
+    // Isso significa que um produto pode pertencer a várias categorias e uma categoria pode conter vários produtos.
+    @ManyToMany
+    // Define a tabela intermediária (ou de associação) que vai mapear a relação entre produtos e categorias.
+    // Essa tabela será criada com o nome "tb_product_category".
+    @JoinTable(
+            name = "tb_product_category", // Nome da tabela intermediária no banco de dados
+            joinColumns = @JoinColumn(name = "product_id"), // Define a chave estrangeira (foreign key) que aponta para a entidade "Product" (dona do relacionamento).
+            inverseJoinColumns = @JoinColumn(name = "category_id") // Define a chave estrangeira inversa que aponta para a entidade "Category".
+    )
     private Set<Category> categories = new HashSet<>();
+
 
     public Product(){
     }
