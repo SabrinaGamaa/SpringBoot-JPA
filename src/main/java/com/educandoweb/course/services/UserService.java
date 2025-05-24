@@ -31,4 +31,23 @@ public class UserService {
     public void delete(Long id){
         repository.deleteById(id);
     }
+
+    // Método responsável por atualizar um usuário com base no ID fornecido.
+    // Primeiro, obtém uma referência ao usuário existente no banco de dados.
+    // Em seguida, atualiza os dados desse usuário com as novas informações recebidas (obj).
+    // Por fim, salva e retorna o usuário atualizado.
+    public User update(Long id, User obj) {
+        User entity = repository.getReferenceById(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    // Método responsável por atualizar os dados de um usuário existente
+    // com as informações fornecidas em outro objeto User (obj).
+    // Apenas os campos nome, e-mail e telefone são atualizados.
+    public void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+    }
 }
