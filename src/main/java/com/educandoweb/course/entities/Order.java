@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -27,6 +29,14 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+    // "mappedBy" aponta para o atributo na classe OrderItem que mapeia o lado inverso da relação.
+    // Nesse caso, é o campo orderItemPK.order dentro da classe OrderItem,
+    // ou seja, estamos dizendo: "O lado dono da relação está lá no OrderItem, dentro da chave composta (orderItemPK)".
+    @OneToMany(mappedBy = "orderItemPK.order")
+    // Usamos Set em vez de List para evitar repetições de itens e manter mais eficiência nas buscas.
+    // HashSet é usado como implementação padrão.
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order(){
     }
@@ -66,6 +76,10 @@ public class Order implements Serializable {
     }
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public Set<OrderItem> getItems(){
+        return items;
     }
 
     @Override
