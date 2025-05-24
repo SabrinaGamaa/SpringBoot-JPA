@@ -15,10 +15,9 @@ public class OrderItemPK implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    // Muitos itens (OrderItem) podem pertencer a um único pedido (Order).
-    @ManyToOne
-    // A tabela que vai armazenar essa relação será chamada de "order_id".
-    @JoinColumn(name = "order_id")
+
+    @ManyToOne // Muitos itens (OrderItem) podem pertencer a um único pedido (Order).
+    @JoinColumn(name = "order_id") // A tabela que vai armazenar essa relação será chamada de "order_id".
     private Order order;
 
     @ManyToOne
