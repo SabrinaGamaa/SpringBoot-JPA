@@ -40,4 +40,10 @@ public class UserResource {
                 .toUri();                   // Converte para objeto URI
         return ResponseEntity.created(uri).body(obj); // Retorna 201 Created com Location no cabeçalho
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
