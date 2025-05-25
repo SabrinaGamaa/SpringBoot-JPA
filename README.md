@@ -4,7 +4,6 @@ Este projeto é o resultado final da seção bônus do curso [**Java COMPLETO Pr
 
 Trata-se de uma **API RESTful** construída com **Spring Boot**, utilizando **JPA / Hibernate** como solução de persistência. O objetivo do projeto é consolidar os principais conceitos de modelagem de domínio, relacionamento entre entidades, acesso a dados com `JpaRepository` e a criação de serviços REST profissionais.
 
----
 
 ## Objetivo do Projeto
 
@@ -18,7 +17,6 @@ O objetivo é desenvolver um **sistema de pedidos de e-commerce**, com funcional
 - Relacionamentos complexos (`@ManyToMany`, `@OneToMany`, `@OneToOne`)
 - Controle de instâncias com injeção de dependência e serviços
 
----
 
 ## Tecnologias Utilizadas
 
@@ -32,13 +30,12 @@ O objetivo é desenvolver um **sistema de pedidos de e-commerce**, com funcional
 - **Postman** (para testes de endpoints)
 - **IntelliJ IDEA** (IDE utilizada)
 
----
 
 ## Estrutura do Projeto
 
 O projeto está organizado em camadas bem definidas, respeitando os princípios da arquitetura MVC e boas práticas com Spring Boot:
 
-## 📁 Estrutura de Diretórios
+### 📁 Estrutura de Diretórios
 
 ```plaintext
 src
@@ -84,7 +81,6 @@ src
         └── templates/                                # Templates HTML (se aplicável)
 ```
 
----
 
 ## Exemplos Visuais
 
@@ -95,23 +91,22 @@ Retorna todas as categorias cadastradas no sistema.
 
 ![Categorias](img/categories.PNG)
 
-### • Endpoint de Produtos (GET /products)
+#### • Endpoint de Produtos (GET /products)
 Lista todos os produtos disponíveis, com suas respectivas categorias.
 ![Produtos](img/products.PNG)
 
-### • Endpoint de Pedidos (GET /orders)
+#### • Endpoint de Pedidos (GET /orders)
 Apresenta todos os pedidos realizados, com detalhes como status e data.
 ![Pedidos](img/orders.PNG)
 
-### • Endpoint de Usuários (GET /users)
+#### • Endpoint de Usuários (GET /users)
 Retorna os usuários cadastrados, incluindo nome, e-mail e telefone.
 ![Usuários](img/users.PNG)
 
-### • Criação de Usuário (POST /users)
+#### • Criação de Usuário (POST /users)
 Permite cadastrar um novo usuário no sistema enviando um corpo JSON com nome, e-mail, telefone e senha.
 ![Usuários](img/getUsers.PNG)
 
----
 
 ## Como Rodar o Projeto
 
