@@ -4,6 +4,7 @@ import com.educandoweb.course.entities.User;
 import com.educandoweb.course.repositories.UserRepository;
 import com.educandoweb.course.services.exceptions.DatabaseException;
 import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,14 +24,17 @@ public class UserService {
         return repository.findAll();
     }
 
+
     public User findById(Long id){
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+
     public User insert(User obj){
         return repository.save(obj);
     }
+
 
     public void delete(Long id){
         boolean exists = repository.existsById(id);
@@ -46,15 +50,22 @@ public class UserService {
         }
     }
 
+
     // Método responsável por atualizar um usuário com base no ID fornecido.
     // Primeiro, obtém uma referência ao usuário existente no banco de dados.
     // Em seguida, atualiza os dados desse usuário com as novas informações recebidas (obj).
     // Por fim, salva e retorna o usuário atualizado.
     public User update(Long id, User obj) {
-        User entity = repository.getReferenceById(id);
-        updateData(entity, obj);
-        return repository.save(entity);
+        try {
+            User entity = repository.getReferenceById(id);
+            updateData(entity, obj);
+            return repository.save(entity);
+
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
+
 
     // Método responsável por atualizar os dados de um usuário existente
     // com as informações fornecidas em outro objeto User (obj).
